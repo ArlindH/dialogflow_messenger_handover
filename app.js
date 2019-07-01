@@ -5,11 +5,6 @@ const FACEBOOK_GRAPH_API_URL = process.env.FACEBOOK_GRAPH_API_URL;
 const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
-console.log(DIALOGFLOW_WEBHOOK);
-console.log(FACEBOOK_GRAPH_API_URL);
-console.log(VERIFY_TOKEN);
-console.log(FACEBOOK_ACCESS_TOKEN);
-
 // Imports dependencies and set up http server
 const
   express = require('express'),

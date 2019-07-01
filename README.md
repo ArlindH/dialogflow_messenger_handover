@@ -1,1 +1,1 @@
-# dialogflow_messenger_handover
+# Dialogflow handover integration for Facebook messenger
