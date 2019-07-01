@@ -19,7 +19,7 @@ To make this work (assuming you already have a working chatbot with Dialogflow):
 
 
 ## Environment variables
-DIALOGFLOW_WEBHOOK -> dialogflow webhook, you can get it from dialogflwo console
-FACEBOOK_GRAPH_API_URL -> facebook graph api
-FACEBOOK_ACCESS_TOKEN -> Facebook access token generated from your app
-VERIFY_TOKEN -> random string that facebook will verify when adding your webhook.
+- DIALOGFLOW_WEBHOOK -> dialogflow webhook, you can get it from dialogflwo console
+- FACEBOOK_GRAPH_API_URL -> facebook graph api
+- FACEBOOK_ACCESS_TOKEN -> Facebook access token generated from your app
+- VERIFY_TOKEN -> random string that facebook will verify when adding your webhook.
