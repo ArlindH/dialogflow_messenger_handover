@@ -28,7 +28,7 @@ server.post('/webhook', (req, res) => {
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
-        if (webhook_event.request_thread_control || webhook_event.pass_thread_control) {
+        if (webhook_event.request_thread_control || webhook_event.pass_thread_control || webhook_event.take_thread_control) {
 
             // Change the thing
             let fbReqBody = {
@@ -38,17 +38,23 @@ server.post('/webhook', (req, res) => {
             console.log(webhook_event);
             if(webhook_event.request_thread_control) {
                 fbReqBody.target_app_id = webhook_event.request_thread_control.requested_owner_app_id;
-            } else {
-                fbReqBody.target_app_id = webhook_event.pass_thread_control.new_owner_app_id;
+                axios.post(
+                    `${FACEBOOK_GRAPH_API_URL}/pass_thread_control?access_token=${FACEBOOK_ACCESS_TOKEN}`,
+                    fbReqBody
+                ).then(function(response) {})
+                .catch(function (error) {
+                    console.log('Fb error', error);
+                });
+            } else if(webhook_event.pass_thread_control) {
+              axios.post(
+                  `${FACEBOOK_GRAPH_API_URL}/take_thread_control?access_token=${FACEBOOK_ACCESS_TOKEN}`,
+                  fbReqBody
+              ).then(function(response) {})
+              .catch(function (error) {
+                  console.log('Fb error', error);
+              });
             }
 
-            // axios.post(
-            //     `${FACEBOOK_GRAPH_API_URL}/pass_thread_control?access_token=${FACEBOOK_ACCESS_TOKEN}`,
-            //     fbReqBody
-            // ).then(function(response) {})
-            // .catch(function (error) {
-            //     console.log('Fb error', error);
-            // });
         } else {
             // Forward to dialog flow
             axios.post(`${DIALOGFLOW_WEBHOOK}`, body)
