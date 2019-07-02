@@ -35,20 +35,20 @@ server.post('/webhook', (req, res) => {
                 recipient: webhook_event.sender,
                 metadata: "Changing control thread" 
             }
-
+            print(webhook_event);
             if(webhook_event.request_thread_control) {
                 fbReqBody.target_app_id = webhook_event.request_thread_control.requested_owner_app_id;
             } else {
                 fbReqBody.target_app_id = webhook_event.pass_thread_control.new_owner_app_id;
             }
 
-            axios.post(
-                `${FACEBOOK_GRAPH_API_URL}/pass_thread_control?access_token=${FACEBOOK_ACCESS_TOKEN}`,
-                fbReqBody
-            ).then(function(response) {})
-            .catch(function (error) {
-                console.log('Fb error', error);
-            });
+            // axios.post(
+            //     `${FACEBOOK_GRAPH_API_URL}/pass_thread_control?access_token=${FACEBOOK_ACCESS_TOKEN}`,
+            //     fbReqBody
+            // ).then(function(response) {})
+            // .catch(function (error) {
+            //     console.log('Fb error', error);
+            // });
         } else {
             // Forward to dialog flow
             axios.post(`${DIALOGFLOW_WEBHOOK}`, body)
