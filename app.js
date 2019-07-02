@@ -35,7 +35,7 @@ server.post('/webhook', (req, res) => {
                 recipient: webhook_event.sender,
                 metadata: "Changing control thread" 
             }
-            print(webhook_event);
+            console.log(webhook_event);
             if(webhook_event.request_thread_control) {
                 fbReqBody.target_app_id = webhook_event.request_thread_control.requested_owner_app_id;
             } else {
